@@ -8,8 +8,8 @@ questao6(void){
         writeHigh(&led1);
         if (count != 0) writeLow(&led2);
         delay(count/100);
-        writeHigh(&led1);
-        if (count != 10000) writeLow(&led2);
+        writeLow(&led1);
+        if (count != 10000) writeHigh(&led2);
         delay((count - 10000)/100);
         count+= toIncrement;
         if(count == 10000 || count == 0) toIncrement *= -1;
