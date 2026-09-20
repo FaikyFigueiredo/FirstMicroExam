@@ -12,21 +12,27 @@ void questao14() {
     writeHigh(&horario);
     writeLow(&antihorario);
 
-    uint32_t acelerador = 0;
-    int8_t toIncrement = 1;
+    int acelerador = 0;
+    int toIncrement = 1;
 
     while (1){
         if (acelerador == 0) writeLow(&pwm);
         writeHigh(&pwm);
         delayUs(acelerador);
         writeLow(&pwm);
-        delayUs(500 - acelerador / 50);
-        if (acelerador == 25000) writeHigh(&pwm);
-        if (acelerador >= 25000 || acelerador < 0){
+        delayUs(5000 - acelerador / 5);
+        if (acelerador >= 2500){
+            writeHigh(&pwm);
+            toIncrement *= -1;
+        }
+
+        if (acelerador < 0){
             togglePin(&horario);
             togglePin(&antihorario);
             toIncrement *= -1;
+            
         }
+
         acelerador += toIncrement;
     }
 }
