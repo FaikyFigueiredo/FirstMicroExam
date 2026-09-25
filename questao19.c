@@ -81,7 +81,7 @@ void questao19() {
           for(uint8_t i = 0; i < 4; i++){
               writeLow(&keysOut[i]);
               for (uint8_t j = 0; j < 4; j++){
-                  if(readPin(&keysIn[j])) {
+                  if(!readPin(&keysIn[j])) {
                       valuesKey(pins, i, j);
                       delay(500);
                   }
